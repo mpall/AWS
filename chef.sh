@@ -50,3 +50,39 @@ echo "{
 
 chef-solo -c solo.rb -j web.json
 
+
+#MySQL
+cd cookbooks
+knife cookbook site download mysql 4.1.2
+tar zxf mysql*
+rm mysql-*.tar.gz
+
+echo "depends \"mysql\", \"4.1.2\"" >> phpapp/metadata.rb
+
+echo "
+include_recipe \"mysql::client\"
+include_recipe \"mysql::server\"
+" >> phpapp/recipes/default.rb
+
+
+knife cookbook site download openssl
+tar zxf openssl*.tar.gz
+rm openssl*.tar.gz
+knife cookbook site download build-essential
+tar zxf build-essential-*.tar.gz
+rm build-essential-*.tar.gz
+knife cookbook site download homebrew
+tar zxf homebrew-*.tar.gz
+rm homebrew-*.tar.gz
+knife cookbook site download windows
+tar zxf windows-*.tar.gz
+rm windows-*.tar.gz
+knife cookbook site download chef_handler
+tar zxf chef_handler-*.tar.gz
+rm chef_handler-*.tar.gz
+
+
+
+
+cd ..
+chef-solo -c solo.rb -j web.json
