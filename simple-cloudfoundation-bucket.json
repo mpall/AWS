@@ -36,6 +36,24 @@
                                     ]
                                 ]
                             }
+                        },
+						{
+                            "Sid": "ManageBucketObjects",
+                            "Effect": "Allow",
+                            "Principal": "arn:aws:iam::132338995091:user/s3manager",
+                            "Action": ["s3:PutObject","s3:DeleteObject","s3:GetObject"],
+                            "Resource": {
+                                "Fn::Join": [
+                                    "",
+                                    [
+                                        "arn:aws:s3:::",
+                                        {
+                                            "Ref": "S3Bucket"
+                                        },
+                                        "/*"
+                                    ]
+                                ]
+                            }
                         }
                     ]
                 },
