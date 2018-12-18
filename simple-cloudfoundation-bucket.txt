@@ -1,7 +1,0 @@
-{
-"Resources" : {
-    "dontkickthebucket" : {
-       "Type" : "AWS::S3::Bucket"
-       }
-    }
-}
